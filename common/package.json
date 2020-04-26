@@ -1,0 +1,20 @@
+{
+  "name": "@myapp/common",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "shvm",
+  "scripts": {
+    "build": "gulp",
+    "start": "gulp start"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-native": "^0.62.2"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.62.2",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "typescript": "^3.8.3"
+  }
+}

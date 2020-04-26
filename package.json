@@ -1,13 +1,32 @@
 {
   "name": "root",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
+    "husky": "^4.2.5",
     "lerna": "^3.15.0"
   },
-  "workspaces": [
-    "components",
-    "mobile",
-    "web",
-    "server"
-  ]
+  "scripts": {
+    "start-link": "wml start"
+  },
+  "workspaces": {
+    "packages": [
+      "common",
+      "mobile",
+      "web",
+      "server"
+    ],
+    "nohoist": [
+      "**/react*",
+      "**/react*/**",
+      "**/react-native*",
+      "**/react-native*/**",
+      "**/@react-native-community/**",
+      "**/gatsby*",
+      "**/gatsby*/**",
+      "**/expo",
+      "**/expo/**",
+      "**/@pmmmwh/**"
+    ]
+  }
 }
