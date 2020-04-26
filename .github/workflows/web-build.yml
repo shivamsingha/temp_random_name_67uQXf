@@ -1,0 +1,27 @@
+name: web
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: restore monorepo cache
+        uses: actions/cache@master
+        with:
+          path: |
+            node_modules
+            */node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn
+      - name: Build common package
+        run: cd common && gulp
+      - name: build
+        run: cd web && yarn build
