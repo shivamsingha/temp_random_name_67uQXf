@@ -12,5 +12,5 @@ function start() {
   watch('src/**', { events: 'all' }, build)
 }
 
-module.exports = { start };
+exports.start = start;
 exports.default = build;
