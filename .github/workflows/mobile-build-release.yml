@@ -24,7 +24,7 @@ jobs:
       - name: Build common package
         run: cd common && gulp
       - name: Copy common package
-        run: pwd && cp -rf common/dist mobile/node_modules/@myapp/common
+        run: mkdir mobile/node_modules/@myapp/common && cp -rf common/dist mobile/node_modules/@myapp/common
       - name: Decrypt keystore
         env:
           KEYSTORE: ${{ secrets.keystore }}
