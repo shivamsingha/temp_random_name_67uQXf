@@ -32,7 +32,7 @@ jobs:
       - name: Add gradle release configs
         env:
           CONFIG_FILE: ${{ secrets.releaseConfig }}
-        run: echo "$CONFIG_FILE" >> mobile/android/local.properties
+        run: echo "$CONFIG_FILE" >> mobile/android/gradle.properties
       - name: Build Android Release
         run: cd mobile/android && ./gradlew assembleRelease
       - name: Upload app-arm64-v8a-release.apk
