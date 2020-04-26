@@ -9,8 +9,8 @@ const build = () => tsProject.src()
   .pipe(dest('dist'));
 
 function start() {
-  watch('src/**', {events:'all'}, build)
+  watch('src/**', { events: 'all' }, build)
 }
 
-module.exports={start};
+module.exports = { start };
 exports.default = build;

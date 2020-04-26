@@ -1,0 +1,57 @@
+name: mobile-build-release
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: restore monorepo cache
+        uses: actions/cache@master
+        with:
+          path: |
+            node_modules
+            */node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn
+      - name: Build common package
+        run: cd common && gulp
+      - name: Copy common package
+        run: cp -r common/dist mobile/node_modules/@myapp/common
+      - name: Decrypt keystore
+        env:
+          KEYSTORE: ${{ secrets.keystore }}
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$KEYSTORE" --multifile mobile/android/app/*.gpg
+      - name: Add gradle release configs
+        env:
+          CONFIG_FILE: ${{ secrets.releaseConfig }}
+        run: echo "$CONFIG_FILE" >> mobile/android/local.properties
+      - name: Build Android Release
+        run: cd mobile/android && ./gradlew assembleRelease
+      - name: Upload app-arm64-v8a-release.apk
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: app-arm64-v8a-release.apk
+          path: mobile/android/app/build/outputs/apk/release/app-arm64-v8a-release.apk
+      - name: Upload app-armeabi-v7a-release.apk
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: app-armeabi-v7a-release.apk
+          path: mobile/android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk
+      - name: Upload app-x86_64-release.apk
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: app-x86_64-release.apk
+          path: mobile/android/app/build/outputs/apk/release/app-x86_64-release.apk
+      - name: Upload app-x86-release.apk
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: app-x86-release.apk
+          path: mobile/android/app/build/outputs/apk/release/app-x86-release.apk
