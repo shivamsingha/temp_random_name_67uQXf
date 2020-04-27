@@ -7,12 +7,14 @@
     "lerna": "^3.15.0"
   },
   "scripts": {
-    "start-link": "wml start"
+    "start-link": "wml start",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lerna run lint:fix",
-      "pre-push": "lerna run lint:fix"
+      "pre-commit": "yarn lint:fix",
+      "pre-push": "yarn lint:fix"
     }
   },
   "workspaces": {
