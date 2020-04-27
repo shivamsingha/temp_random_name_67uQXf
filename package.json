@@ -9,6 +9,12 @@
   "scripts": {
     "start-link": "wml start"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run lint:fix",
+      "pre-push": "lerna run lint:fix"
+    }
+  },
   "workspaces": {
     "packages": [
       "common",
@@ -22,6 +28,7 @@
       "**/react-native*",
       "**/react-native*/**",
       "**/@react-native-community/**",
+      "**/@react-navigation/**",
       "**/gatsby*",
       "**/gatsby*/**",
       "**/expo",

@@ -23,5 +23,7 @@ jobs:
         run: yarn
       - name: Build common package
         run: cd common && gulp
+      - name: lint
+        run: lerna run lint
       - name: build
         run: cd web && yarn build

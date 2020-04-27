@@ -23,6 +23,8 @@ jobs:
         run: yarn
       - name: Build common package
         run: cd common && gulp
+      - name: lint
+        run: lerna run lint
       - name: Copy common package
         run: |
           mkdir -p mobile/node_modules/@myapp/common 

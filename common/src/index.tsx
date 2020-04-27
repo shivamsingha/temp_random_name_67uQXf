@@ -1,3 +1,3 @@
-import App from './App'
+import * as Screens from './Screens';
 
-export {App}
+export { Screens };
