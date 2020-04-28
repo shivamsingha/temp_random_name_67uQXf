@@ -6,7 +6,7 @@ import { enableScreens } from 'react-native-screens';
 import { Screens } from '@myapp/common';
 enableScreens();
 
-const { LoggedOut, Login } = Screens;
+const { LoggedOut, Login, Signup, SignupEmail, SignupMakeProfile } = Screens;
 const Stack = createStackNavigator<Screens.RootStackParamList>();
 
 const App: React.FC = () => (
@@ -14,6 +14,9 @@ const App: React.FC = () => (
     <Stack.Navigator initialRouteName="LoggedOut" headerMode="none">
       <Stack.Screen name="LoggedOut" component={LoggedOut} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="SignupEmail" component={SignupEmail} />
+      <Stack.Screen name="SignupMakeProfile" component={SignupMakeProfile} />
     </Stack.Navigator>
   </NavigationContainer>
 );

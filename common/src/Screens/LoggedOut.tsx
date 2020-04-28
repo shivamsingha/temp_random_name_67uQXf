@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  View,
   ImageBackground,
-  Text,
-  StyleSheet,
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
 
 const LoggedOut: React.FC<Props> = ({ navigation }) => {
   const toLoginScreen = (): void => navigation.navigate('Login');
+  const toSignupScreen = (): void => navigation.navigate('Signup');
   return (
     <SafeAreaView>
       <StatusBar translucent barStyle="light-content" backgroundColor="#000" />
@@ -98,7 +99,9 @@ const LoggedOut: React.FC<Props> = ({ navigation }) => {
             LOG IN
           </Text>
         </Touchable>
-        <Touchable style={[styles.Buttons, styles.SignupButton]}>
+        <Touchable
+          style={[styles.Buttons, styles.SignupButton]}
+          onPress={toSignupScreen}>
           <Text style={[styles.ButtonText, styles.SignupButtonText]}>
             SIGN UP
           </Text>
