@@ -125,6 +125,11 @@ const SignupMakeProfile: React.FC<Props> = ({ navigation }) => {
   );
   const changeProfilePic = (): void =>
     setprofilePicSource('../assets/dummy1.png');
+  let secondTextInput: TextInput;
+  const setref = (input: TextInput) => {
+    secondTextInput = input;
+  };
+  const nextTextInput = (): void => secondTextInput.focus();
   return (
     <SafeAreaView style={styles.Container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
@@ -153,13 +158,23 @@ const SignupMakeProfile: React.FC<Props> = ({ navigation }) => {
         placeholder="User Name"
         placeholderTextColor="#C4C4C4"
         keyboardType="email-address"
+        textContentType="username"
+        returnKeyType="next"
+        blurOnSubmit={false}
+        onSubmitEditing={nextTextInput}
         autoFocus
+        enablesReturnKeyAutomatically
       />
       <TextInput
+        ref={setref}
         style={styles.TextBox}
         placeholder="Password"
         placeholderTextColor="#C4C4C4"
+        textContentType="password"
+        returnKeyType="go"
+        onSubmitEditing={toLogedOutScreen}
         secureTextEntry
+        enablesReturnKeyAutomatically
       />
     </SafeAreaView>
   );

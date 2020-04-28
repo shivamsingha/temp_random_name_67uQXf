@@ -96,6 +96,11 @@ const styles = StyleSheet.create({
 
 const Login: React.FC<Props> = ({ navigation }) => {
   const toLogedOutScreen = (): void => navigation.navigate('LoggedOut');
+  let secondTextInput: TextInput;
+  const setref = (input: TextInput) => {
+    secondTextInput = input;
+  };
+  const nextTextInput = (): void => secondTextInput.focus();
   return (
     <SafeAreaView style={styles.Container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
@@ -116,13 +121,23 @@ const Login: React.FC<Props> = ({ navigation }) => {
         placeholder="Phone Number or Email address"
         placeholderTextColor="#C4C4C4"
         keyboardType="email-address"
+        textContentType="telephoneNumber"
+        returnKeyType="next"
+        blurOnSubmit={false}
+        onSubmitEditing={nextTextInput}
         autoFocus
+        enablesReturnKeyAutomatically
       />
       <TextInput
+        ref={setref}
         style={styles.TextBox}
         placeholder="Password"
         placeholderTextColor="#C4C4C4"
+        textContentType="password"
+        returnKeyType="go"
+        onSubmitEditing={toLogedOutScreen}
         secureTextEntry
+        enablesReturnKeyAutomatically
       />
       <Touchable style={[styles.Buttons]}>
         <View style={[styles.ButtonContainer]}>

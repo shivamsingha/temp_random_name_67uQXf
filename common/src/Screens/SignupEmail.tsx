@@ -91,7 +91,11 @@ const SignupEmail: React.FC<Props> = ({ navigation }) => {
         placeholder="Email address"
         placeholderTextColor="#C4C4C4"
         keyboardType="email-address"
+        textContentType="emailAddress"
+        returnKeyType="go"
+        onSubmitEditing={toSignupMakeProfileScreen}
         autoFocus
+        enablesReturnKeyAutomatically
       />
     </SafeAreaView>
   );

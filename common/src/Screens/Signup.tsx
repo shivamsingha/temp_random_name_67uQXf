@@ -108,7 +108,11 @@ const Signup: React.FC<Props> = ({ navigation }) => {
         placeholder="Phone Number"
         placeholderTextColor="#C4C4C4"
         keyboardType="phone-pad"
+        textContentType="telephoneNumber"
+        returnKeyType="go"
+        onSubmitEditing={toSignupMakeProfileScreen}
         autoFocus
+        enablesReturnKeyAutomatically
       />
       <Touchable style={[styles.Buttons]} onPress={toSignupEmailScreen}>
         <Text style={styles.GoogleButtonText}>Use Email Instead</Text>
